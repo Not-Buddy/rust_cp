@@ -7,9 +7,11 @@ fn main(){
     input.clear();
 
     io::stdin().read_line(&mut input).unwrap();
-    let vec : Vec<i32> = input.split_whitespace()
+    let mut vec : Vec<i32> = input.split_whitespace()
     .map(|s| s.parse().unwrap())
     .collect();
+
+    vec.sort();
 
     let maximum = *vec.iter().max().unwrap();
 
