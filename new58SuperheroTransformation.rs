@@ -1,43 +1,33 @@
 use std::io;
 
-fn count_vowels(text: &str) -> i32 {
-
-    let mut count : i32 = 0;
-    for c in text.chars(){
-        match c.to_ascii_lowercase() {
-            'a' | 'e' | 'i' | 'o' | 'u' => count += 1,
-            _ => (),
-        }
-    }
-    count
+fn is_vowel(c : &char) -> bool {
+    matches!(c ,'a' | 'e' | 'i' | 'o' | 'u')
 }
 
-fn count_consonants(text : &str) -> i32 {
-
-    let mut count : i32 = 0;
-    for c in text.chars() {
-        let lower_c = c.to_ascii_lowercase();
-        if lower_c.is_ascii_alphabetic() && !matches!(lower_c, 'a' | 'e' | 'i' | 'o' | 'u'){
-            count += 1;
-        }
-    }
-    count
-
-}
 fn main(){
-    let mut s = String::new();
-    io::stdin().read_line(&mut s).expect("Unable to read line");
-
     let mut t = String::new();
-    io::stdin().read_line(&mut t).expect("Unable to read line2");
+    io::stdin().read_line(&mut t).unwrap();
+    let t = t.trim();
 
-    let vowels1 = count_vowels(&s);
-    let vowels2 = count_vowels(&t);
+    let mut s = String::new();
+    io::stdin().read_line(&mut s).unwrap();
+    let s = s.trim();
 
-    let consonants1 = count_consonants(&s);
-    let consonants2 = count_consonants(&t);
+    if s.len() != t.len(){
+        println!("No");
+        return
+    }
 
-    if vowels1 == vowels2 && consonants1 == consonants2{
+    let mut possible = true;
+
+    for (c, k) in t.chars().zip(s.chars()) {
+        if is_vowel(&c) != is_vowel(&k){
+            possible = false;
+            break;
+        }
+    }
+
+    if possible {
         println!("Yes");
     }
     else {
