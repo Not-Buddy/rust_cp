@@ -11,21 +11,22 @@ fn main(){
     .map(|s| s.parse().unwrap())
     .collect();
 
-    vec.sort();
-
-    let maximum = *vec.iter().max().unwrap();
+    for i in 0..vec.len() {
+        while vec[i] % 2 == 0{
+            vec[i] /= 2;
+        }
+        while vec[i] % 3 == 0{
+            vec[i] /= 3;
+        }
+    }
 
     let mut possible = true;
 
-    for i in &vec {
-        if *i != maximum{
-            if maximum % i == 0{
-                continue;
-            }
-            else {
-                possible = false;
-                break;
-            }
+    let id0 = vec[0];
+    for &id in &vec{
+        if id != id0{
+            possible = false;
+            break;
         }
     }
 
