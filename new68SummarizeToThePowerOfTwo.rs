@@ -1,4 +1,5 @@
 use std::io;
+use std::collections::HashMap;
 
 fn main(){
     let mut input = String::new();
@@ -9,32 +10,47 @@ fn main(){
     input.clear();
 
     io::stdin().read_line(&mut input).expect("Failed to read line");
-    let mut vec : Vec<u32> = input.split_whitespace()
+    let vec : Vec<i64> = input.split_whitespace()
     .map(|s| s.parse().unwrap())
     .collect();
     input.clear();
 
     if vec.len() == 0{
         println!("0");
+        return;
     }
 
-    let mut states : Vec<bool> = vec![false;vec.len()];
-    for i in 0..vec.len(){
-        for j in 0..vec.len(){
-            if (vec[i]+vec[j]).is_power_of_two() && i!=j {
-                states[i] = true;
-                states[j] = true;
-            }   
+    let mut freq : HashMap<i64 , usize> = HashMap::new();
+    for &num in &vec {
+        *freq.entry(num).or_insert(0) += 1;
+    }
+
+    let mut bad = 0;
+
+    for &num in &vec {
+        let mut flag = false;
+
+        for p in 0..=30 {
+            let target = (1 << p) - num;
+
+            if let Some(&count) = freq.get(&target){
+                if target == num && count > 1{
+                    flag = true;
+                    break;
+                }
+                else if target != num && count > 0{
+                    flag = true;
+                    break;
+                }
+            }
+        }
+
+        if !flag{
+            bad += 1;
         }
     }
+    
 
-    let mut count = 0;
-    for state in states{
-        if state == false{
-            count += 1;
-        }
-    }
-
-    println!("{}",count);
+    println!("{}",bad);
     
 }
