@@ -12,7 +12,7 @@ fn main(){
 
         io::stdin().read_line(&mut input).expect("Failed to read line");
         let mut it = input.split_whitespace();
-        let n : usize  = it.next().unwrap().parse().unwrap();
+        let _n : usize  = it.next().unwrap().parse().unwrap();
         input.clear();
 
         io::stdin().read_line(&mut input).expect("Failed to read line");
@@ -21,18 +21,10 @@ fn main(){
         .collect();
         input.clear();
 
-        
-        let mut temp : Vec<u32> = vec.clone();
-        temp.dedup();
+        let max = *vec.iter().max().unwrap();
+        let min = *vec.iter().min().unwrap();
 
-        if temp.len() == 1{
-            println!("0");
-            continue;
-        }
-
-        let count = vec.iter().max().unwrap();
-
-        println!("{}",count/2);
+        println!("{}",(max - min + 1) / 2);
 
     }
     
