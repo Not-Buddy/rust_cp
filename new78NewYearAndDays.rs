@@ -19,8 +19,8 @@ fn main() {
     }
     else{
         match n{
-            31 => println!("11"),
-            30 => println!("7"),
+            31 => println!("7"),
+            30 => println!("11"),
             _ => println!("12"),
         }
     }
