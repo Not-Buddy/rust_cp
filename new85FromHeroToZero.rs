@@ -22,8 +22,11 @@ fn main() {
                 count += 1;
             }
             else {
-                n -=1;
-                count += 1;
+                // n -= 1;
+                // count += 1;
+                let div = n % k;
+                count += div;
+                n -= div;
             }
         }
         println!("{}",count);
