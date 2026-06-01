@@ -1,5 +1,4 @@
 use std::io;
-use std::cmp::{max,min};
 
 fn main() {
     let mut input = String::new();
@@ -16,44 +15,38 @@ fn main() {
     
     let mut missing_idx : Vec<usize> = Vec::new(); 
 
-    // println!("OG arrangement {:?}",vec);
+    let mut present : Vec<bool> = vec![false ; n + 1];
 
     for i in 0..n{
         if vec[i] == 0{
             missing_idx.push(i);
+        }else{
+            present[vec[i]] = true;
         }
     }
-
-    // println!("Missing Indexes {:?}", missing_idx);
-
-    let mut gifts : Vec<usize> = Vec::new();
     
+    let mut gifts : Vec<usize> = Vec::new();
     for i in 1..=n{
-        if vec.contains(&i) {
-            continue;
-        }
-        else{
+        if !present[i]{
             gifts.push(i);
         }
     }
 
-    // println!("remaining gifts {:?}", gifts);
+    for i in 0..missing_idx.len(){
+        vec[missing_idx[i]] = gifts[i];
+    }
 
-    for id in missing_idx{
-        let temp = *gifts.last().unwrap();
-        gifts.pop();
-        if id+1 != temp{
-            vec[id] = temp;
-        }else{
-            vec[id] = *gifts.last().unwrap();
-            gifts.push(temp);
+    for i in 0..missing_idx.len(){
+        let id = missing_idx[i];
+
+        if vec[id] == id + 1{
+            let next_idx = missing_idx[(i+1) % missing_idx.len()];
+            vec.swap(id,next_idx);
         }
     }
 
-    // println!("ans {:?}", vec);
-
     for i in vec{
-        print!("{} ", i);
+        print!("{} ",i);
     }
 
 }
