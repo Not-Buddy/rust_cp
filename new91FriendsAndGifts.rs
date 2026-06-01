@@ -40,10 +40,13 @@ fn main() {
     // println!("remaining gifts {:?}", gifts);
 
     for id in missing_idx{
-        let temp = * gifts.last().unwrap();
+        let temp = *gifts.last().unwrap();
         gifts.pop();
-        if id != temp{
+        if id+1 != temp{
             vec[id] = temp;
+        }else{
+            vec[id] = *gifts.last().unwrap();
+            gifts.push(temp);
         }
     }
 
