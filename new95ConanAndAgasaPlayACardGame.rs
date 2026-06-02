@@ -1,5 +1,5 @@
 use std::io;
-
+use std::collections::HashMap;
 fn main() {
     let mut input = String::new();
     io::stdin().read_line(&mut input).expect("Failed to read line");
@@ -12,19 +12,28 @@ fn main() {
     .map(|s| s.parse().unwrap())
     .collect();
 
-    let highest_idx = vec.len();
+    let mut map : HashMap<i64,i64> = HashMap::new();
+    for v in &vec{
+        let count = map.entry(*v).or_insert(1);
+        *count += 1;
+    }
 
-    let max_ele = vec.iter().max().unwrap();
+    let mut flag = false;
 
+    for ele in &map{
+        if ele.1 % 2 == 0{
+            flag = true;
+            break;
+        }
+    }
 
-
-    // println!("highest_idx : {} max_ele : {}",highest_idx,max_ele);
-
-    if *max_ele > highest_idx as i64{
+    if flag{
         println!("Conan");
     }
-    else {
+    else{
         println!("Agasa");
     }
     
+
+
 }
