@@ -13,6 +13,11 @@ fn main(){
     let left = m;
     let right = n-m;
 
+    if n == 1 && m == 1{
+        println!("1");
+        return;
+    }
+
     let ans;
     if left < right{
         ans = m + 1;
