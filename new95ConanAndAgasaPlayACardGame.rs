@@ -14,14 +14,13 @@ fn main() {
 
     let mut map : HashMap<i64,i64> = HashMap::new();
     for v in &vec{
-        let count = map.entry(*v).or_insert(1);
-        *count += 1;
+        *map.entry(*v).or_insert(0) += 1;
     }
 
     let mut flag = false;
 
     for ele in &map{
-        if ele.1 % 2 == 0{
+        if ele.1 % 2 == 1{
             flag = true;
             break;
         }
