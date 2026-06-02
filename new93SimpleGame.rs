@@ -17,6 +17,9 @@ fn main(){
     if left < right{
         ans = m + 1;
     }
+    else if left == right{
+        ans = m + 1;
+    }
     else{
         ans = m - 1;
     }
