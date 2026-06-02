@@ -18,7 +18,7 @@ fn main() {
 
 
 
-    println!("highest_idx : {} max_ele : {}",highest_idx,max_ele);
+    // println!("highest_idx : {} max_ele : {}",highest_idx,max_ele);
 
     if *max_ele > highest_idx as i64{
         println!("Conan");
