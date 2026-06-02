@@ -10,24 +10,13 @@ fn main(){
 
     let ( x, y, a, b) = (vec[0],vec[1],vec[2],vec[3]);
 
-    let mut red : Vec<i64> = Vec::new();
-    let mut pink : Vec<i64> = Vec::new();
-
-    for i in a..=b{
-        if i % x == 0{
-            red.push(i);
-        }
-        if i % y == 0{
-            pink.push(i);
-        }
-    }
-
     let mut ans = 0;
 
-    for &block in &red{
-        if pink.contains(&block){
+    for i in a..=b{
+        if i % x == 0 && i % y == 0{
             ans += 1;
         }
+
     }
 
     println!("{}",ans);
