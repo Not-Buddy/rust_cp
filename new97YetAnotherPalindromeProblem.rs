@@ -16,7 +16,7 @@ fn main() {
         input.clear();
 
         io::stdin().read_line(&mut input).expect("Failed to read line");
-        let vec : Vec<char> = input.trim().split_whitespace()
+        let vec : Vec<i64> = input.trim().split_whitespace()
         .map(|s| s.parse().unwrap())
         .collect();
         input.clear();
@@ -26,7 +26,7 @@ fn main() {
         for i in 3..=n{
             for j in 0..=(n-i){
                 let slice = &vec[j..(j + i)];
-                if slice.iter().eq(slice.iter().rev()){
+                if slice.iter() .eq(slice.iter().rev()){
                     found = true;
                     break;
                 }
