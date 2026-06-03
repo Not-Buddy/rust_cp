@@ -1,4 +1,5 @@
 use std::io;
+use std::collections::HashMap;
 
 fn main() {
     let mut input = String::new();
@@ -12,7 +13,7 @@ fn main() {
 
         io::stdin().read_line(&mut input).expect("Failed to read line");
         let mut iter = input.split_whitespace();
-        let n : usize = iter.next().unwrap().parse().unwrap();
+        let _n : usize = iter.next().unwrap().parse().unwrap();
         input.clear();
 
         io::stdin().read_line(&mut input).expect("Failed to read line");
@@ -21,20 +22,23 @@ fn main() {
         .collect();
         input.clear();
 
+        let mut f_idx : HashMap<i64, usize> = HashMap::new();
         let mut found = false;
 
-        for i in 3..=n{
-            for j in 0..=(n-i){
-                let slice = &vec[j..(j + i)];
-                if slice.iter() .eq(slice.iter().rev()){
+        for (i, &val) in vec.iter().enumerate(){
+
+            if let Some(&idx) = f_idx.get(&val){
+                if i - idx >= 2{
                     found = true;
                     break;
                 }
             }
-            if found{
-                break;
+            else {
+                f_idx.insert(val ,i);
             }
+
         }
+
         if found{
             println!("YES");
         }
