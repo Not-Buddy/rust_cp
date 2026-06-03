@@ -48,3 +48,45 @@ fn main() {
     }
 
 }
+
+
+// 2 pointer approach for the same problem below
+// use std::io;
+
+// fn main() {
+//     let mut input = String::new();
+//     io::stdin().read_line(&mut input).expect("Failed to read line");
+//     let t: usize = input.trim().parse().unwrap();
+
+//     for _ in 0..t {
+//         input.clear();
+//         io::stdin().read_line(&mut input).expect("Failed to read line");
+//         let n: usize = input.trim().parse().unwrap();
+
+//         input.clear();
+//         io::stdin().read_line(&mut input).expect("Failed to read line");
+//         let vec: Vec<i64> = input.trim().split_whitespace()
+//             .map(|s| s.parse().unwrap())
+//             .collect();
+
+//         let mut found = false;
+        
+//         for i in 0..n {
+//             for j in (i + 2)..n {
+//                 if vec[i] == vec[j] {
+//                     found = true;
+//                     break;
+//                 }
+//             }
+//             if found {
+//                 break;
+//             }
+//         }
+
+//         if found {
+//             println!("YES");
+//         } else {
+//             println!("NO");
+//         }
+//     }
+// }
